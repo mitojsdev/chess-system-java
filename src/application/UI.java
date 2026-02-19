@@ -1,6 +1,7 @@
 package application;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import chess.ChessPiece;
@@ -41,7 +42,10 @@ public class UI {
 			int row = Integer.parseInt(s.substring(1));
 			return new ChessPosition(column, row);
 		}
-		catch(RuntimeException e){
+		catch (NoSuchElementException e) {
+			throw e;
+		}
+		catch (RuntimeException e) {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8");
 		}
 		}
